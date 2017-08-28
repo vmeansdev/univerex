@@ -3,16 +3,4 @@ defmodule Univerex do
   Documentation for Univerex.
   """
 
-  @doc """
-  Hello world.
-
-  ## Examples
-
-      iex> Univerex.hello
-      :world
-
-  """
-  def hello do
-    :world
-  end
 end
