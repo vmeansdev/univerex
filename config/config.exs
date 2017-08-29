@@ -3,8 +3,8 @@
 use Mix.Config
 
 config :univerex,
-    base_url: "https://example.com/api/",
-    faculties: "faculties",
-    groups: "groups/faculty_id/",
-    current_term: "current_term/group_id/",
-    schedule: "study_schedule/group_id/"
+    base_url: "https://univeris.susu.ru/services/mobile/Get",
+    faculties: "Faculties",
+    groups: "Groups/FacultyId/",
+    term: "CurrentTerm/GroupId/",
+    schedule: "StudySchedule/GroupId/"
