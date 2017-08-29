@@ -1,3 +1,3 @@
 defmodule Univerex.Faculty do
-  defstruct id: "", name: "", shortname: ""
+  defstruct [:id, :name, :shortname]
 end
