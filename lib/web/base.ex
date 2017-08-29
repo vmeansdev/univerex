@@ -6,7 +6,10 @@ defmodule Univerex.Base do
   use HTTPoison.Base
 
   def full_url(url, params \\ "") do
-    url <> params
+    cond do
+      is_nil(params) -> url
+      true -> url <> params
+    end
   end
 
   def process_url(url) do
@@ -15,14 +18,14 @@ defmodule Univerex.Base do
   end
 
   def process_request_headers(headers) do
-    Dict.put headers, :"Accept", "application/json"
+    Keyword.put headers, :"Accept", "application/json"
   end
 
   def process_response_body(body) do
     case body do
       "" ->
         nil
-      _ ->
+      _  ->
         body
         |> Poison.decode!
         |> normalize_data()
@@ -31,13 +34,17 @@ defmodule Univerex.Base do
 
   def normalize_data(data) when is_list(data) do
     data
-    |> Enum.map(fn hash -> Task.async(fn -> normalize_data(hash) end) end)
+    |> Enum.map(&Task.async(fn -> normalize_data(&1) end))
     |> Enum.map(&Task.await/1)
   end
 
   def normalize_data(data) when is_map(data) do
     for {key, val} <- data, into: %{} do
-      {String.downcase(key), val}
+      key_transformed =
+        key
+        |> String.downcase()
+        |> String.to_atom()
+      {key_transformed, val}
     end
   end
 end
