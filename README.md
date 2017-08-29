@@ -1,6 +1,11 @@
-# Univerex
+# UniverEx
 
-**TODO: Add description**
+UniverEx is a library for loading university study plan.
+It contains convenient structs to work with (Faculty, Group, Term, Schedule).
+
+Under the hood UniverEx uses HTTPoison and Poison to download and parse JSON data respectively.
+
+Actual purpose of this library is personal use only, but you may also find it useful and helpful ;)
 
 ## Installation
 
@@ -10,7 +15,7 @@ by adding `univerex` to your list of dependencies in `mix.exs`:
 ```elixir
 def deps do
   [
-    {:univerex, "~> 0.1.0"}
+    {:univerex, "~> 0.0.1"}
   ]
 end
 ```
