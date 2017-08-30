@@ -1,13 +1,21 @@
 defmodule Univerex.Mixfile do
   use Mix.Project
 
+  @version "0.0.1"
+  @url "https://github.com/vmeansdev/univerex"
+
   def project do
     [
       app: :univerex,
-      version: "0.0.1",
+      version: @version,
       elixir: "~> 1.3",
+      description: "UniverEx is a library for loading university study plan."
       start_permanent: Mix.env == :prod,
-      deps: deps()
+      deps: deps(),
+      package: package(),
+      name: "UniverEx",
+      source_url: @url,
+      homepage_url: @url
     ]
   end
 
@@ -22,7 +30,15 @@ defmodule Univerex.Mixfile do
   defp deps do
     [
       {:httpoison, "~> 0.13"},
-      {:poison, "~> 3.1"}
+      {:poison, "~> 3.1"},
+      {:recase, "~> 0.2"}
     ]
+  end
+
+  defp package do
+    [files: ~w(lib mix.exs README.md LICENSE.md),
+     maintainers: ["Nikita Kononenko"],
+     licenses: ["MIT"],
+     links: %{"GitHub" => @url}]
   end
 end
