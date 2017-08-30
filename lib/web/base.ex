@@ -5,6 +5,10 @@ defmodule Univerex.Base do
   """
   use HTTPoison.Base
 
+  def load(url) do
+    __MODULE__.get!(url, [], [ ssl: [{:versions, [:'tlsv1.2']}] ]).body
+  end
+
   def full_url(url, params \\ "") do
     cond do
       is_nil(params) -> url
@@ -42,7 +46,7 @@ defmodule Univerex.Base do
     for {key, val} <- data, into: %{} do
       key_transformed =
         key
-        |> String.downcase()
+        |> Recase.to_snake()
         |> String.to_atom()
       {key_transformed, val}
     end
