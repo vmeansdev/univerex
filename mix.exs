@@ -9,7 +9,7 @@ defmodule Univerex.Mixfile do
       app: :univerex,
       version: @version,
       elixir: "~> 1.3",
-      description: "UniverEx is a library for loading university study plan."
+      description: "UniverEx is a library for loading university study plan.",
       start_permanent: Mix.env == :prod,
       deps: deps(),
       package: package(),
@@ -36,7 +36,8 @@ defmodule Univerex.Mixfile do
   end
 
   defp package do
-    [files: ~w(lib mix.exs README.md LICENSE.md),
+    [name: "UniverEx",
+     files: ~w(lib mix.exs README.md LICENSE.md),
      maintainers: ["Nikita Kononenko"],
      licenses: ["MIT"],
      links: %{"GitHub" => @url}]
