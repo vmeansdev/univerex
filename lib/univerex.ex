@@ -5,7 +5,7 @@ defmodule Univerex do
   alias Univerex.Loader
   
   defp load(key, param \\ nil) do
-     Loader.load_collection(key, param)
+    Loader.load_collection(key, param)
   end
 
   def load_faculties() do
