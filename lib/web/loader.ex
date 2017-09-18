@@ -15,7 +15,8 @@ defmodule Univerex.Loader do
     |> map_data(key)
   end
     
-  defp map_data(data, key) when is_list(data) do
+  defp map_data(data, _key) when is_nil(data), do: nil
+  defp map_data(data, key)  when is_list(data) do
     case key do
       :faculties -> map_to_struct(Faculty, data)
       :groups    -> map_to_struct(Group, data)
@@ -24,9 +25,7 @@ defmodule Univerex.Loader do
     end
   end
 
-  defp map_data(data, _key) when is_nil(data), do: nil
-
-  defp map_data(data, key) when is_map(data) do
+  defp map_data(data, key)  when is_map(data) do
     case key do
       :term -> struct(Term, data)
       _     -> nil

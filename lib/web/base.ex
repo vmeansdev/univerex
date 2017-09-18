@@ -9,12 +9,9 @@ defmodule Univerex.Base do
     __MODULE__.get!(url, [], [ ssl: [{:versions, [:'tlsv1.2']}] ]).body
   end
 
-  def full_url(url, params \\ "") do
-    cond do
-      is_nil(params) -> url
-      true -> url <> params
-    end
-  end
+  def full_url(url),         do: url
+  def full_url(url, nil),    do: full_url(url)
+  def full_url(url, params), do: url <> params
 
   def process_url(url) do
     base_url = Application.get_env(:univerex, :base_url)
@@ -25,15 +22,11 @@ defmodule Univerex.Base do
     Keyword.put headers, :"Accept", "application/json"
   end
 
+  def process_response_body(""),  do: nil
   def process_response_body(body) do
-    case body do
-      "" ->
-        nil
-      _  ->
-        body
-        |> Poison.decode!
-        |> normalize_data()
-    end
+    body
+    |> Poison.decode!
+    |> normalize_data()
   end
 
   def normalize_data(data) when is_list(data) do
