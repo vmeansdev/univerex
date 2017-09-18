@@ -31,12 +31,13 @@ defmodule Univerex.Mixfile do
     [
       {:httpoison, "~> 0.13"},
       {:poison, "~> 3.1"},
-      {:recase, "~> 0.2"}
+      {:recase, "~> 0.2"},
+      {:ex_doc, ">= 0.0.0", only: :dev}
     ]
   end
 
   defp package do
-    [name: "UniverEx",
+    [name: "univerex",
      files: ~w(lib mix.exs README.md LICENSE.md),
      maintainers: ["Nikita Kononenko"],
      licenses: ["MIT"],

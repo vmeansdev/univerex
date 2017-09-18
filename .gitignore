@@ -21,3 +21,6 @@ erl_crash.dump
 
 # Config should not be stored with repo
 /config/
+
+# Docs also should not be stored with repo
+/doc/
